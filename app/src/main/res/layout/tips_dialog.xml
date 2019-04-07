@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
-        android:background="#FFF"
         android:gravity="center"
         android:orientation="vertical">
         <!-- 【必设】标题控件tag：beta_title-->

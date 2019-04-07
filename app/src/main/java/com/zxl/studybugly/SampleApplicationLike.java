@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.multidex.MultiDex;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tencent.bugly.Bugly;
@@ -53,7 +54,7 @@ public class SampleApplicationLike extends DefaultApplicationLike {
          * true表示初始化时自动检查升级
          * false表示不会自动检查升级，需要手动调用Beta.checkUpgrade()方法
          */
-        Beta.autoCheckUpgrade = false;
+        Beta.autoCheckUpgrade = true;
 
         /**
          * 设置升级周期为60s（默认检查周期为0s），60s内SDK不重复向后天请求策略
@@ -92,7 +93,7 @@ public class SampleApplicationLike extends DefaultApplicationLike {
 
         //设置是否开启热更新的能力
         Beta.enableHotfix = true;
-        //设置是否显示apk版本信息
+        //设置是否显示apk版本信息（更新内容，更新说明）
         Beta.canShowApkInfo = false;
         //初始化的统一接口
         //Bugly.init(this, "your APP_ID", false);
@@ -132,7 +133,7 @@ public class SampleApplicationLike extends DefaultApplicationLike {
             @Override
             public void onCreate(Context context, View view, UpgradeInfo upgradeInfo) {
                 // 注：可通过这个回调方式获取布局的控件，如果设置了id，可通过findViewById方式获取，如果设置了tag，可以通过findViewWithTag，具体参考下面例子:
-
+                //upgrade_dialog.xml 是通过这种方式自定义弹出框的布局文件
                 // 通过id方式获取控件，并更改imageview图片
 //                ImageView imageView = (ImageView) view.findViewById(R.id.imageview);
 //                imageView.setImageResource(R.mipmap.girl);
@@ -182,6 +183,9 @@ public class SampleApplicationLike extends DefaultApplicationLike {
 
                 TextView tv1 = (TextView) view.findViewWithTag("beta_upgrade_feature");
                 tv1.setText("beta_title");
+//                LinearLayout tv11 = (LinearLayout) view.findViewWithTag("test");
+//                tv11.setBackgroundResource(R.drawable.update);
+
             }
 
             @Override
